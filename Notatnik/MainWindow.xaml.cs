@@ -113,5 +113,29 @@ namespace Notatnik
                     save = false;
             }
         }
+
+        private void ShortCut_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                if(e.Key == Key.O)
+                {
+                    Open();
+                    Keyboard.ClearFocus();
+                }
+                if (e.Key == Key.S)
+                {
+                    Save();
+                    Keyboard.ClearFocus();
+                }
+                if (Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift))
+                {
+                    if (e.Key == Key.S)
+                    {
+                        SaveAs();
+                        Keyboard.ClearFocus();
+                    }
+                }
+        }
     }
 }

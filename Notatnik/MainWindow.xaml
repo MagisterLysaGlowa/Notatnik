@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Notatnik"
         mc:Ignorable="d"
-        Title="Notatnik" Height="450" Width="800">
+        Title="Notatnik" Height="450" Width="800"
+        KeyDown="ShortCut_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
