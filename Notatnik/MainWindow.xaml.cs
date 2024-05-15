@@ -33,7 +33,7 @@ namespace Notatnik
 
         private void Paste_Click(object sender, RoutedEventArgs e)
         {
-
+            Text.Paste();
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
