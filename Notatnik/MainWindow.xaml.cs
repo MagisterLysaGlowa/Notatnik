@@ -28,7 +28,7 @@ namespace Notatnik
 
         private void Copy_Click(object sender, RoutedEventArgs e)
         {
-
+            Text.Copy();
         }
 
         private void Paste_Click(object sender, RoutedEventArgs e)
