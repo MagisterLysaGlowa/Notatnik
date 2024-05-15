@@ -38,7 +38,10 @@ namespace Notatnik
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-
+            int selectionStart = Text.SelectionStart;
+            Text.Text = Text.Text.Remove(selectionStart,Text.SelectionLength);
         }
+
+
     }
 }
