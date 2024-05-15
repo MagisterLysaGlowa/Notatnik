@@ -15,11 +15,14 @@
         <Menu Grid.Row="0" FontSize="14">
             <MenuItem Header="Plik">
                 <MenuItem Header="Otwórz" 
-                          InputGestureText="Ctrl+O"/>
+                          InputGestureText="Ctrl+O"
+                          Click="Open_Click"/>
                 <MenuItem Header="Zapisz" 
-                          InputGestureText="Ctrl+S"/>
+                          InputGestureText="Ctrl+S"
+                          Click="Save_Click"/>
                 <MenuItem Header="Zapisz jako" 
-                          InputGestureText="Ctrl+Shift+S"/>
+                          InputGestureText="Ctrl+Shift+S"
+                          Click="SaveAs_Click"/>
                 <MenuItem Header="Zakończ" />
             </MenuItem>
 
@@ -46,7 +49,8 @@
                      BorderThickness="0" 
                      SpellCheck.IsEnabled="True" 
                      AcceptsReturn="True" 
-                     AcceptsTab="True"/>
+                     AcceptsTab="True" 
+                     TextChanged="Text_Changed"/>
         </ScrollViewer>
     </Grid>
 </Window>
