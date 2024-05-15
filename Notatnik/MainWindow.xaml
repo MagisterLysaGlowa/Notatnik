@@ -24,7 +24,8 @@
                 <MenuItem Header="Zapisz jako" 
                           InputGestureText="Ctrl+Shift+S"
                           Click="SaveAs_Click"/>
-                <MenuItem Header="Zakończ" />
+                <MenuItem Header="Zakończ"
+                          Click="Cancel_Click"/>
             </MenuItem>
 
             <MenuItem Header="Edycja">

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using System.ComponentModel;
 using System.IO;
 using System.Text;
 using System.Windows;
@@ -43,7 +44,7 @@ namespace Notatnik
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             int selectionStart = Text.SelectionStart;
-            Text.Text = Text.Text.Remove(selectionStart,Text.SelectionLength);
+            Text.Text = Text.Text.Remove(selectionStart, Text.SelectionLength);
         }
 
         private void Open_Click(object sender, RoutedEventArgs e)
@@ -67,7 +68,7 @@ namespace Notatnik
 
         private void Save()
         {
-            if(path == "")
+            if (path == "")
             {
                 SaveAs();
             }
@@ -85,9 +86,9 @@ namespace Notatnik
             dialog.Filter = "txt files (*.txt)|*.txt";
             dialog.AddExtension = true;
 
-            if(dialog.ShowDialog() == true)
+            if (dialog.ShowDialog() == true)
             {
-                File.WriteAllText(dialog.FileName,Text.Text);
+                File.WriteAllText(dialog.FileName, Text.Text);
                 path = dialog.FileName;
                 save = true;
                 return true;
@@ -107,18 +108,45 @@ namespace Notatnik
 
         private void Text_Changed(object sender, TextChangedEventArgs e)
         {
-            if(path != "")
+            if (path != "")
             {
                 if (File.ReadAllText(path) != Text.Text)
                     save = false;
             }
         }
 
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            if (!save)
+            {
+                MessageBoxResult response = MessageBox.Show("Czy chcesz zapisać zmiany w pliku?", "Notatnik", MessageBoxButton.YesNoCancel);
+                if (response == MessageBoxResult.Yes)
+                {
+                    if (path == "")
+                    {
+                        if (!SaveAs())
+                        {
+                            e.Cancel = true;
+                        }
+                    }
+                    else
+                    {
+                        Save();
+                    }
+                }
+                else if(response == MessageBoxResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+            }
+            base.OnClosing(e);
+        }
         private void ShortCut_KeyDown(object sender, KeyEventArgs e)
         {
-            if(Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
+            if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
             {
-                if(e.Key == Key.O)
+                if (e.Key == Key.O)
                 {
                     Open();
                     Keyboard.ClearFocus();
@@ -136,6 +164,12 @@ namespace Notatnik
                         Keyboard.ClearFocus();
                     }
                 }
+            }
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
