@@ -23,7 +23,7 @@ namespace Notatnik
 
         private void Cut_Click(object sender, RoutedEventArgs e)
         {
-            
+            Text.Cut();
         }
 
         private void Copy_Click(object sender, RoutedEventArgs e)
